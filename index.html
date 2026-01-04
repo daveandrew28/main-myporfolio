@@ -13,21 +13,28 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo" id="logo">
-                <div class="logo" id="logo">
-                   <div class="logo-circle">
+            <div class="logo">
+                <div class="logo-circle">
                     <img src="images/logo/rukia2.jpg" alt="Logo" id="logo-img" onclick="toggleTheme()">
                 </div>
-                </div>
             </div>
-            <ul class="nav-links">
+
+            <!-- Mobile Menu Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">My Porfolio</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#blog">Blog</a></li> <!-- New Blog Link -->
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+
+            <!-- Theme Toggle Button -->
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                 <i class="fas fa-moon"></i>
             </button>
