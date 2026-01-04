@@ -74,50 +74,170 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 20px;
-        }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s ease;
             position: relative;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
+        .logo {
+            display: flex;
+            align-items: center;
         }
 
-        .nav-links a:hover {
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .menu-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dark-mode .menu-toggle {
+            border-color: var(--primary);
             color: var(--primary);
         }
 
-        .nav-links a:hover::after {
+        .dark-mode .menu-toggle:hover {
+            background: var(--primary);
+            color: #0f172a;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .dark-mode .logo-circle {
+            border-color: var(--primary);
+            background: var(--bg-alt);
+        }
+
+        .logo-circle img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-circle:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Navigation Links */
+        .mobile-nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 100px 30px 30px;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            gap: 0;
+        }
+
+        .mobile-nav-links.active {
+            right: 0;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            display: block;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--border);
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+            padding-left: 10px;
+        }
+
+        .mobile-back-to-blog {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        /* Desktop back link */
+        .desktop-back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .desktop-back-to-blog:hover {
+            gap: 12px;
+        }
+
+        /* Overlay when menu is open */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .theme-toggle {
@@ -133,7 +253,6 @@
             justify-content: center;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            margin-left: 1rem;
         }
 
         .theme-toggle:hover {
@@ -156,21 +275,6 @@
         .blog-post-detail {
             padding: 100px 0 50px;
             background: var(--bg-alt);
-        }
-
-        .back-to-blog {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            transition: gap 0.3s ease;
-        }
-
-        .back-to-blog:hover {
-            gap: 12px;
         }
 
         .blog-header {
@@ -197,8 +301,7 @@
             font-weight: 600;
         }
 
-        .blog-date,
-        .blog-read-time {
+        .blog-date {
             color: var(--text-light);
             font-size: 0.9rem;
             display: flex;
@@ -226,6 +329,7 @@
             height: 60px;
             border-radius: 50%;
             object-fit: cover;
+            cursor: pointer;
         }
 
         .author-info h4 {
@@ -462,6 +566,27 @@
             font-size: 0.85rem;
         }
 
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.05);
+        }
+
         /* Accommodation */
         .accommodation-grid {
             display: grid;
@@ -594,7 +719,7 @@
             border-left: 4px solid var(--primary);
         }
 
-        /* Tags & Share */
+        /* Tags */
         .blog-tags-section {
             padding: 2rem 0;
             border-top: 1px solid var(--border);
@@ -623,56 +748,33 @@
             color: white;
         }
 
-        .share-section {
-            padding: 2rem 0;
-        }
-
-        .share-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .share-btn {
+        .back-to-top {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            transition: gap 0.3s ease;
         }
 
-        .share-btn.facebook {
-            background: #1877f2;
-            color: white;
-        }
-
-        .share-btn.twitter {
-            background: #1da1f2;
-            color: white;
-        }
-
-        .share-btn.linkedin {
-            background: #0077b5;
-            color: white;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .back-to-top:hover {
+            gap: 12px;
         }
 
         /* Educational Tour Gallery */
-        .educational-tour-folder {
-            padding: 6rem 0;
+        .educational-tour-folder,
+        .educational-tour-gallery {
+            padding: 4rem 0;
             background: var(--bg-alt);
         }
 
-        .educational-tour-gallery {
-            padding: 6rem 0;
-            background: var(--bg-alt);
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+            text-align: center;
         }
 
         .gallery-grid {
@@ -706,44 +808,6 @@
 
         .gallery-item:hover .gallery-img {
             transform: scale(1.05);
-        }
-
-        .back-to-top {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            transition: gap 0.3s ease;
-        }
-
-        /* Section Title */
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--text);
-            text-align: center;
-        }
-
-        /* Modal styling for gallery images */
-        .gallery-item {
-            cursor: zoom-in;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         /* Footer */
@@ -828,14 +892,47 @@
             color: var(--primary);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* ===== Responsive Design ===== */
+        @media (max-width: 1024px) {
             .blog-title {
                 font-size: 2rem;
             }
 
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Navigation */
+            .menu-toggle {
+                display: flex;
+            }
+
+            .desktop-back-to-blog {
+                display: none;
+            }
+
+            .mobile-back-to-blog {
+                display: flex;
+            }
+
+            /* Blog Content */
+            .blog-title {
+                font-size: 1.8rem;
+            }
+
             .blog-content-detail {
                 padding: 2rem;
+            }
+
+            .blog-featured-image {
+                height: 250px;
             }
 
             .timeline-item {
@@ -857,24 +954,44 @@
                 min-width: 60px;
             }
 
-            .blog-featured-image {
-                height: 250px;
+            .accommodation-grid {
+                grid-template-columns: 1fr;
             }
 
-            .share-buttons {
-                flex-direction: column;
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .nav-links {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 1rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .takeaways-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
+
+            /* Navigation */
+            .navbar .container {
+                padding: 0.8rem 15px;
+            }
+
+            .mobile-nav-links {
+                width: 250px;
+            }
+
+            /* Blog Content */
             .blog-header {
                 padding: 1.5rem;
             }
@@ -884,10 +1001,14 @@
             }
 
             .blog-title {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
 
-            .accommodation-grid {
+            .blog-featured-image {
+                height: 200px;
+            }
+
+            .company-visit-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -895,85 +1016,180 @@
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                display: none;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .takeaways-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-tags {
+                flex-direction: column;
+            }
+
+            .tags-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .blog-tag {
+                width: 100%;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
             }
         }
 
-        /* Make images clickable */
-        img[onclick] {
-            cursor: pointer;
+        @media (max-width: 360px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-title {
+                font-size: 1.3rem;
+            }
+
+            .blog-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
         }
 
-        /* Logo Circle Styles */
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
+        /* Tablet-specific adjustments */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .company-card {
+                flex-direction: row;
+            }
+
+            .company-logo {
+                width: 70px;
+                height: 70px;
+                min-width: 70px;
+            }
+
+            .takeaways-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .navbar,
+            .menu-toggle,
+            .theme-toggle,
+            .mobile-nav-links,
+            .menu-overlay,
+            .footer {
+                display: none !important;
+            }
+
+            .blog-post-detail {
+                padding-top: 0;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .blog-content-detail {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Mobile Back Button */
+        .mobile-back-btn {
+            display: none;
             align-items: center;
-            justify-content: center;
-            background: var(--bg);
-            position: relative;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
         }
 
-        .logo-circle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        .mobile-back-btn:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        .dark-mode .logo-circle {
-            border-color: var(--primary);
-            background: var(--bg-alt);
-        }
+        @media (max-width: 768px) {
+            .mobile-back-btn {
+                display: flex;
+            }
 
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-circle:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Remove or update any conflicting styles */
-        .logo img {
-            /* Remove any conflicting styles */
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        /* If you have this style from before, remove it */
-        .logo img:hover {
-            transform: none;
+            .desktop-back-to-blog {
+                display: none;
+            }
         }
     </style>
 </head>
 
+<!-- Navigation -->
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo" id="logo">
+            <div class="logo">
                 <div class="logo-circle">
-                    <img src="images/logo/bread1.jpg" alt="Logo" id="logo-img" onclick="toggleTheme()">
+                    <img src="images/logo/bread1.jpg" alt="Logo" id="logo-img">
                 </div>
             </div>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
-            </button>
-            <a href="index.html" class="back-to-blog">
-                <i class="fas fa-arrow-left"></i> Back to Blog
-            </a>
+
+            <div class="nav-controls">
+                <!-- Mobile Back Button (shown only on mobile) -->
+                <a href="index.html" class="mobile-back-btn" id="mobileBackBtn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+
+                <!-- Desktop back link -->
+                <a href="index.html" class="desktop-back-to-blog">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+
+                <!-- Theme toggle -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Links -->
+    <div class="mobile-nav-links" id="mobileNavLinks">
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="index.html" class="mobile-back-to-blog">
+            <i class="fas fa-arrow-left"></i> Back to Main Portfolio
+        </a>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Blog Post Content -->
     <section class="blog-post-detail">
@@ -988,8 +1204,7 @@
                 </div>
                 <h1 class="blog-title">Educational Tour Journal: Cebu & Bohol Experience</h1>
                 <div class="blog-author">
-                    <img src="images/My profile/dave.png" alt="Dave Andrew Serafin" class="author-avatar"
-                        onclick="openImageModal(this.src)">
+                    <img src="images/My profile/dave.png" alt="Dave Andrew Serafin" class="author-avatar">
                     <div class="author-info">
                         <h4>Dave Andrew Serafin</h4>
                         <p>UI/UX Developer & BSIT Student</p>
@@ -999,7 +1214,7 @@
 
             <!-- Blog Featured Image -->
             <div class="blog-featured-image">
-                <img src="images/blog/cebu.jpg" alt="Educational Tour Cebu Bohol" onclick="openImageModal(this.src)">
+                <img src="images/blog/cebu.jpg" alt="Educational Tour Cebu Bohol">
             </div>
 
             <!-- Blog Content -->
@@ -1134,8 +1349,7 @@
                     <!-- MATA Technologies -->
                     <div class="company-card">
                         <div class="company-logo">
-                            <img src="images/companies/Mata.jpg" alt="MATA Technologies"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/companies/Mata.jpg" alt="MATA Technologies">
                         </div>
                         <div class="company-info">
                             <h3>MATA Technologies, Inc.</h3>
@@ -1155,37 +1369,24 @@
                                 destinations through cutting-edge technology. Overall, the visit was both educational
                                 and inspiring, giving us a glimpse into the future of virtual experiences.</p>
 
-                            <!-- Simple Photos Grid -->
+                            <!-- Photos Grid -->
                             <div style="margin-top: 1.5rem;">
                                 <h4 style="margin-bottom: 1rem; color: var(--text);">Photos from Mata Technologies
                                     Visit:</h4>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                                    <img src="images/companies/Matatech/M1.jpg" alt="Mata Visit 1"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Matatech/M2.jpg" alt="Mata Visit 2"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Matatech/M3.jpg" alt="Mata Visit 3"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Matatech/M4.jpg" alt="Mata Visit 4"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                                <div class="photo-grid">
+                                    <img src="images/companies/Matatech/M1.jpg" alt="Mata Visit 1">
+                                    <img src="images/companies/Matatech/M2.jpg" alt="Mata Visit 2">
+                                    <img src="images/companies/Matatech/M3.jpg" alt="Mata Visit 3">
+                                    <img src="images/companies/Matatech/M4.jpg" alt="Mata Visit 4">
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <!-- Codechum -->
                     <div class="company-card">
                         <div class="company-logo">
-                            <img src="images/companies/Codechum.jpg" alt="Codechum" onclick="openImageModal(this.src)">
+                            <img src="images/companies/Codechum.jpg" alt="Codechum">
                         </div>
                         <div class="company-info">
                             <h3>Codechum</h3>
@@ -1195,37 +1396,21 @@
                                 <span class="company-tag">Learning Platform</span>
                             </div>
                             <p><strong>Observation/Learnings:</strong> My visit to CodeChum at CIT (Cebu Institute of
-                                Technology–University)
-                                was very insightful. The session was facilitated by the Chief Operating Officer, Xavier
-                                David Maranga, who
-                                introduced us to CodeChum and shared how the company started and grew. He talked about
-                                their journey, the
-                                challenges they faced, and how they worked hard to achieve what CodeChum is today. He
-                                also shared his
-                                personal story of learning how to code, including the inspiring experiences he had with
-                                his brothers, the
-                                creators of CodeChum.</p>
+                                Technology–University) was very insightful. The session was facilitated by the Chief
+                                Operating Officer, Xavier David Maranga, who introduced us to CodeChum and shared how
+                                the company started and grew. He talked about their journey, the challenges they faced,
+                                and how they worked hard to achieve what CodeChum is today. He also shared his personal
+                                story of learning how to code, including the inspiring experiences he had with his
+                                brothers, the creators of CodeChum.</p>
 
-                            <!-- Simple Photos Grid -->
+                            <!-- Photos Grid -->
                             <div style="margin-top: 1.5rem;">
                                 <h4 style="margin-bottom: 1rem; color: var(--text);">Photos from Codechum Visit:</h4>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                                    <img src="images/companies/codechum/C1.jpg" alt="Codechum Visit 1"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/codechum/C2.jpg" alt="Codechum Visit 2"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/codechum/C3.jpg" alt="Codechum Visit 3"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/codechum/C4.jpg" alt="Codechum Visit 4"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                                <div class="photo-grid">
+                                    <img src="images/companies/codechum/C1.jpg" alt="Codechum Visit 1">
+                                    <img src="images/companies/codechum/C2.jpg" alt="Codechum Visit 2">
+                                    <img src="images/companies/codechum/C3.jpg" alt="Codechum Visit 3">
+                                    <img src="images/companies/codechum/C4.jpg" alt="Codechum Visit 4">
                                 </div>
                             </div>
                         </div>
@@ -1234,7 +1419,7 @@
                     <!-- Wordtech -->
                     <div class="company-card">
                         <div class="company-logo">
-                            <img src="images/companies/Wordtech.jpg" alt="Wordtech" onclick="openImageModal(this.src)">
+                            <img src="images/companies/Wordtech.jpg" alt="Wordtech">
                         </div>
                         <div class="company-info">
                             <h3>Wordtech Information Solutions, Inc.</h3>
@@ -1251,26 +1436,14 @@
                                 core business, the session included valuable information about the fundamental
                                 mechanisms of how the internet works.</p>
 
-                            <!-- Wordtech Photos -->
+                            <!-- Photos Grid -->
                             <div style="margin-top: 1.5rem;">
                                 <h4 style="margin-bottom: 1rem; color: var(--text);">Photos from Wordtech Visit:</h4>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                                    <img src="images/companies/Wordtech/W1.jpg" alt="Wordtech Visit 1"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Wordtech/W2.jpg" alt="Wordtech Visit 2"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Wordtech/W3.jpg" alt="Wordtech Visit 3"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/Wordtech/W4.jpg" alt="Wordtech Visit 4"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                                <div class="photo-grid">
+                                    <img src="images/companies/Wordtech/W1.jpg" alt="Wordtech Visit 1">
+                                    <img src="images/companies/Wordtech/W2.jpg" alt="Wordtech Visit 2">
+                                    <img src="images/companies/Wordtech/W3.jpg" alt="Wordtech Visit 3">
+                                    <img src="images/companies/Wordtech/W4.jpg" alt="Wordtech Visit 4">
                                 </div>
                             </div>
                         </div>
@@ -1279,7 +1452,7 @@
                     <!-- RIVAN IT -->
                     <div class="company-card">
                         <div class="company-logo">
-                            <img src="images/companies/RivanIT.jpg" alt="RIVAN IT" onclick="openImageModal(this.src)">
+                            <img src="images/companies/RivanIT.jpg" alt="RIVAN IT">
                         </div>
                         <div class="company-info">
                             <h3>RIVAN IT CEBU</h3>
@@ -1297,26 +1470,14 @@
                                 how to properly connect these devices. Overall, the experience was both fun and
                                 entertaining, and I learned a lot about IT systems and practical networking skills.</p>
 
-                            <!-- RIVAN IT Photos -->
+                            <!-- Photos Grid -->
                             <div style="margin-top: 1.5rem;">
                                 <h4 style="margin-bottom: 1rem; color: var(--text);">Photos from RIVAN IT Visit:</h4>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                                    <img src="images/companies/RivanIT/R1.jpg" alt="RIVAN IT Visit 1"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/RivanIT/R2.jpg" alt="RIVAN IT Visit 2"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/RivanIT/R3.jpg" alt="RIVAN IT Visit 3"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/RivanIT/R4.jpg" alt="RIVAN IT Visit 4"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                                <div class="photo-grid">
+                                    <img src="images/companies/RivanIT/R1.jpg" alt="RIVAN IT Visit 1">
+                                    <img src="images/companies/RivanIT/R2.jpg" alt="RIVAN IT Visit 2">
+                                    <img src="images/companies/RivanIT/R3.jpg" alt="RIVAN IT Visit 3">
+                                    <img src="images/companies/RivanIT/R4.jpg" alt="RIVAN IT Visit 4">
                                 </div>
                             </div>
                         </div>
@@ -1325,8 +1486,7 @@
                     <!-- T.A.R.S.I.E.R. 117 -->
                     <div class="company-card">
                         <div class="company-logo">
-                            <img src="images/companies/T.a.R.S.I.E.R.jpg" alt="T.A.R.S.I.E.R. 117"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/companies/T.a.R.S.I.E.R.jpg" alt="T.A.R.S.I.E.R. 117">
                         </div>
                         <div class="company-info">
                             <h3>T.A.R.S.I.E.R. 117</h3>
@@ -1335,39 +1495,28 @@
                                 <span class="company-tag">Disaster Risk Management</span>
                                 <span class="company-tag">Security</span>
                             </div>
-                            <p><strong>Observation/Learnings:</strong> My Visit to T.A.R.S.I.E.R. 117 was an eye-opening
-                                experience. We were able to see whats inside especially the operations center where they
-                                monitor and respond to emergencies in Bohol. The staff explained how they use technology
-                                to
-                                track weather patterns, coordinate rescue operations, and communicate with other
-                                agencies. I
-                                was impressed by their dedication and professionalism in handling disaster situations.
-                                They
-                                also showed us some of the equipment they use, such as radios, computers, and mapping
-                                software. Overall, the visit highlighted the importance of disaster preparedness and the
-                                role of technology in saving lives.</p>
+                            <p><strong>Observation/Learnings:</strong> My Visit to T.A.R.S.I.E.R. 117 was an
+                                eye-opening experience. We were able to see whats inside especially the operations
+                                center where they monitor and respond to emergencies in Bohol. The staff explained how
+                                they use technology to track weather patterns, coordinate rescue operations, and
+                                communicate with other agencies. I was impressed by their dedication and professionalism
+                                in handling disaster situations. They also showed us some of the equipment they use,
+                                such as radios, computers, and mapping software. Overall, the visit highlighted the
+                                importance of disaster preparedness and the role of technology in saving lives.</p>
 
-                            <!-- T.A.R.S.I.E.R. 117 Photos -->
+                            <!-- Photos Grid -->
                             <div style="margin-top: 1.5rem;">
                                 <h4 style="margin-bottom: 1rem; color: var(--text);">Photos from T.A.R.S.I.E.R. 117
                                     Visit:</h4>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                                    <img src="images/companies/T.A.R.S.I.E.R 117/T.jpg" alt="T.A.R.S.I.E.R. 117 Visit 1"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/T.A.R.S.I.E.R 117/A.jpg" alt="T.A.R.S.I.E.R. 117 Visit 2"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/T.A.R.S.I.E.R 117/R.jpg" alt="T.A.R.S.I.E.R. 117 Visit 3"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
-
-                                    <img src="images/companies/T.A.R.S.I.E.R 117/S.jpg" alt="T.A.R.S.I.E.R. 117 Visit 4"
-                                        onclick="openImageModal(this.src)"
-                                        style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer;">
+                                <div class="photo-grid">
+                                    <img src="images/companies/T.A.R.S.I.E.R 117/T.jpg"
+                                        alt="T.A.R.S.I.E.R. 117 Visit 1">
+                                    <img src="images/companies/T.A.R.S.I.E.R 117/A.jpg"
+                                        alt="T.A.R.S.I.E.R. 117 Visit 2">
+                                    <img src="images/companies/T.A.R.S.I.E.R 117/R.jpg"
+                                        alt="T.A.R.S.I.E.R. 117 Visit 3">
+                                    <img src="images/companies/T.A.R.S.I.E.R 117/S.jpg"
+                                        alt="T.A.R.S.I.E.R. 117 Visit 4">
                                 </div>
                             </div>
                         </div>
@@ -1380,57 +1529,41 @@
                         <div class="accommodation-grid">
                             <div class="accommodation-card">
                                 <div class="accommodation-image">
-                                    <img src="images/inn/bai.jpg" alt="Bai Hotel" onclick="openImageModal(this.src)">
+                                    <img src="images/inn/bai.jpg" alt="Bai Hotel">
                                 </div>
                                 <div class="accommodation-info">
                                     <h3>Bai Hotel</h3>
                                     <p class="location">Cebu City, Philippines</p>
                                     <p>bai Hotel Cebu is a 4-star hospitality property located in Mandaue City, Cebu.
-                                        Opened
-                                        last 2017, bai Hotel Cebu is an independent hotel. Nestled between the bustling
-                                        cities
-                                        of Mandaue and Cebu, it presents spectacular harbor and city views with
-                                        ultra-modern
-                                        amenities and facilities. A contemporary chic business hotel and culinary
-                                        destination in
-                                        one of the country's top business and leisure destinations. All 668 guestrooms
-                                        and 8
-                                        restaurants are stylishly designed in contemporary hues that evoke an ambiance
-                                        of modern
-                                        luxury and spaciousness secured with a world-class access control system.
-                                        Envisioned to
-                                        enhance the beauty and transformation of the highly-urbanized cities of Mandaue
-                                        and
-                                        Cebu, bai Hotel Cebu is for the business and leisure traveler who seeks
-                                        boldness,
+                                        Opened last 2017, bai Hotel Cebu is an independent hotel. Nestled between the
+                                        bustling cities of Mandaue and Cebu, it presents spectacular harbor and city
+                                        views with ultra-modern amenities and facilities. A contemporary chic business
+                                        hotel and culinary destination in one of the country's top business and leisure
+                                        destinations. All 668 guestrooms and 8 restaurants are stylishly designed in
+                                        contemporary hues that evoke an ambiance of modern luxury and spaciousness
+                                        secured with a world-class access control system. Envisioned to enhance the
+                                        beauty and transformation of the highly-urbanized cities of Mandaue and Cebu,
+                                        bai Hotel Cebu is for the business and leisure traveler who seeks boldness,
                                         authenticity, and innovativeness for each visit, whether it is for the first
-                                        time or
-                                        succeeding visits. A member of the renowned Worldhotels, bai Hotel Cebu is Your
-                                        Host in
-                                        the South that links the traveler to a global commitment to enhanced safety,
-                                        comfortable
-                                        accommodations, and distinctly bai service in inspiring and memorable settings.
-                                    </p>
+                                        time or succeeding visits. A member of the renowned Worldhotels, bai Hotel Cebu
+                                        is Your Host in the South that links the traveler to a global commitment to
+                                        enhanced safety, comfortable accommodations, and distinctly bai service in
+                                        inspiring and memorable settings.</p>
                                 </div>
                             </div>
 
                             <div class="accommodation-card">
                                 <div class="accommodation-image">
-                                    <img src="images/inn/panglao.jpg" alt="Panglao Vista Suites"
-                                        onclick="openImageModal(this.src)">
+                                    <img src="images/inn/panglao.jpg" alt="Panglao Vista Suites">
                                 </div>
                                 <div class="accommodation-info">
                                     <h3>Panglao Vista Suites</h3>
                                     <p class="location">Panglao, Bohol, Philippines</p>
                                     <p>Panglao Vista Suites (also known as Panglao Oceanview Resort by SMS Hospitality)
-                                        is a
-                                        newly opened sanctuary in Panglao, Bohol, offering luxury, tranquility, and
-                                        stunning
-                                        natural beauty with modern amenities like free WiFi, an outdoor pool, 24/7 front
-                                        desk,
-                                        and airport shuttle service, aiming to provide memorable stays for romantic
-                                        getaways,
-                                        family fun, or peaceful retreats.</p>
+                                        is a newly opened sanctuary in Panglao, Bohol, offering luxury, tranquility, and
+                                        stunning natural beauty with modern amenities like free WiFi, an outdoor pool,
+                                        24/7 front desk, and airport shuttle service, aiming to provide memorable stays
+                                        for romantic getaways, family fun, or peaceful retreats.</p>
                                 </div>
                             </div>
                         </div>
@@ -1445,8 +1578,7 @@
                             <div class="team-grid">
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/tourguides/von.jpg" alt="Taner Von"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/tourguides/von.jpg" alt="Taner Von">
                                     </div>
                                     <h4>Taner Von</h4>
                                     <p>WATT Professional Tour Guide</p>
@@ -1454,8 +1586,7 @@
 
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/tourguides/dibdib.jpg" alt="Roschelle Danica"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/tourguides/dibdib.jpg" alt="Roschelle Danica">
                                     </div>
                                     <h4>Roschelle Danica</h4>
                                     <p>WATT Professional Tour Guide</p>
@@ -1466,8 +1597,7 @@
                             <div class="team-grid">
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/instructors/keana.jpg" alt="Keana Cerela Giron"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/instructors/keana.jpg" alt="Keana Cerela Giron">
                                     </div>
                                     <h4>Keana Cerela Giron</h4>
                                     <p>ITS Moderator & Full-time Faculty.</p>
@@ -1475,8 +1605,7 @@
 
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/instructors/owen.jpg" alt="Dr. Owen Pilongo"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/instructors/owen.jpg" alt="Dr. Owen Pilongo">
                                     </div>
                                     <h4>Dr. Owen Pilongo</h4>
                                     <p>DEAN Program Chairperson, BSIT/BLIS.</p>
@@ -1484,8 +1613,7 @@
 
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/instructors/kent.jpg" alt="Kent Vincent Sarsalejo"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/instructors/kent.jpg" alt="Kent Vincent Sarsalejo">
                                     </div>
                                     <h4>Kent Vincent Sarsalejo</h4>
                                     <p>Full-time Faculty.</p>
@@ -1493,8 +1621,7 @@
 
                                 <div class="team-member">
                                     <div class="team-avatar">
-                                        <img src="images/instructors/eujene.jpg" alt="Eujene Briz Elumbaring"
-                                            onclick="openImageModal(this.src)">
+                                        <img src="images/instructors/eujene.jpg" alt="Eujene Briz Elumbaring">
                                     </div>
                                     <h4>Eujene Briz Elumbaring</h4>
                                     <p>Full-time Faculty.</p>
@@ -1515,32 +1642,32 @@
                     <div class="gallery-grid">
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j1.jpg" alt="Educational Tour Photo 1"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j2.jpg" alt="Educational Tour Photo 2"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j3.jpg" alt="Educational Tour Photo 3"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j4.jpg" alt="Educational Tour Photo 4"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j6.jpg" alt="Educational Tour Photo 5"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
                             <img src="images/gallery/tourfolder/j5.jpg" alt="Educational Tour Photo 6"
-                                class="gallery-img" onclick="openImageModal(this.src)">
+                                class="gallery-img">
                         </div>
                     </div>
                 </div>
@@ -1553,57 +1680,45 @@
 
                     <div class="gallery-grid">
                         <div class="gallery-item">
-                            <img src="images/gallery/g1.jpg" alt="Educational Tour Photo 1" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g1.jpg" alt="Educational Tour Photo 1" class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
-                            <img src="images/gallery/g12.jpg" alt="Educational Tour Photo 2" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g12.jpg" alt="Educational Tour Photo 2" class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
-                            <img src="images/gallery/g3.jpg" alt="Educational Tour Photo 3" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g3.jpg" alt="Educational Tour Photo 3" class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
-                            <img src="images/gallery/g4.jpg" alt="Educational Tour Photo 4" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g4.jpg" alt="Educational Tour Photo 4" class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
-                            <img src="images/gallery/g5.jpg" alt="Educational Tour Photo 5" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g5.jpg" alt="Educational Tour Photo 5" class="gallery-img">
                         </div>
 
                         <div class="gallery-item">
-                            <img src="images/gallery/g6.jpg" alt="Educational Tour Photo 6" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g6.jpg" alt="Educational Tour Photo 6" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g7.jpg" alt="Educational Tour Photo 7" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g7.jpg" alt="Educational Tour Photo 7" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g8.jpg" alt="Educational Tour Photo 8" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g8.jpg" alt="Educational Tour Photo 8" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g9.jpg" alt="Educational Tour Photo 9" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g9.jpg" alt="Educational Tour Photo 9" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g10.jpg" alt="Educational Tour Photo 10" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g10.jpg" alt="Educational Tour Photo 10" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g11.jpg" alt="Educational Tour Photo 11" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g11.jpg" alt="Educational Tour Photo 11" class="gallery-img">
                         </div>
                         <div class="gallery-item">
-                            <img src="images/gallery/g12.jpg" alt="Educational Tour Photo 12" class="gallery-img"
-                                onclick="openImageModal(this.src)">
+                            <img src="images/gallery/g12.jpg" alt="Educational Tour Photo 12" class="gallery-img">
                         </div>
                     </div>
                 </div>
@@ -1652,12 +1767,10 @@
                     <div class="conclusion">
                         <p>This educational tour was more than just company visits - it was a comprehensive learning
                             experience that combined technical knowledge with cultural immersion. The insights
-                            gained from
-                            industry professionals, hands-on experiences with new technologies, and the opportunity
+                            gained from industry professionals, hands-on experiences with new technologies, and the
+                            opportunity to explore different regions of the Philippines have significantly contributed
                             to
-                            explore different regions of the Philippines have significantly contributed to my growth
-                            as an
-                            IT student and future professional.</p>
+                            my growth as an IT student and future professional.</p>
                     </div>
                 </div>
 
@@ -1687,7 +1800,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>Thank you for checking out the blog! | <a href="../index.html#blog" class="footer-link">Blog Educational
+            <p>Thank you for checking out the blog! | <a href="index.html#blog" class="footer-link">Blog Educational
                     Tour</a></p>
         </div>
     </footer>
@@ -1707,6 +1820,9 @@
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const themeToggle = document.getElementById('themeToggle');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNavLinks = document.getElementById('mobileNavLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
         const logoImg = document.getElementById('logo-img');
         const body = document.body;
 
@@ -1724,8 +1840,8 @@
             // Initialize theme
             initTheme();
 
-            // Setup image click events for gallery images
-            setupGalleryImageClicks();
+            // Setup all event listeners
+            setupEventListeners();
 
             // Setup navbar scroll effect
             setupNavbarScroll();
@@ -1782,6 +1898,27 @@
             }
         }
 
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            mobileNavLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            const menuIcon = menuToggle.querySelector('i');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = mobileNavLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            mobileNavLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            const menuIcon = menuToggle.querySelector('i');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+            document.body.style.overflow = '';
+        }
+
         // Image Modal Functions
         function openImageModal(imageSrc) {
             if (modal && modalImage) {
@@ -1798,29 +1935,73 @@
             }
         }
 
-        // Close modal when clicking outside the image
-        if (modal) {
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) {
-                    closeImageModal();
-                }
-            });
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
-                closeImageModal();
-            }
-        });
-
         // Setup Functions
-        function setupGalleryImageClicks() {
-            // Add click event to all gallery images
-            document.querySelectorAll('.gallery-img').forEach(img => {
+        function setupEventListeners() {
+            // Theme toggle
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+
+            // Logo click to toggle theme
+            if (logoImg) {
+                logoImg.addEventListener('click', toggleTheme);
+            }
+
+            // Mobile menu toggle
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileNavLinks.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Close mobile menu when clicking overlay
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            // Add click event to all images with cursor pointer
+            document.querySelectorAll('img[style*="cursor: pointer"], .author-avatar, .company-logo img, .team-avatar img, .gallery-img, .accommodation-image img, .blog-featured-image img').forEach(img => {
                 img.addEventListener('click', function () {
                     openImageModal(this.src);
                 });
+            });
+
+            // Close modal when clicking the X
+            const closeModalBtn = document.querySelector('.close-modal');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeImageModal);
+            }
+
+            // Close modal when clicking outside the image
+            if (modal) {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        closeImageModal();
+                    }
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (modal && modal.style.display === 'flex') {
+                        closeImageModal();
+                    }
+                    if (mobileNavLinks.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+
+            // Close mobile menu on window resize
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768 && mobileNavLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
             });
         }
 
@@ -1833,10 +2014,8 @@
 
                 if (currentScroll <= 0) {
                     navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
-                    navbar.style.padding = '1rem 0';
                 } else {
                     navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                    navbar.style.padding = '0.5rem 0';
                 }
 
                 lastScroll = currentScroll;
@@ -1856,7 +2035,7 @@
             });
 
             // Observe all cards for animation
-            document.querySelectorAll('.company-card, .accommodation-card, .takeaway-card').forEach(card => {
+            document.querySelectorAll('.company-card, .accommodation-card, .takeaway-card, .gallery-item, .team-member').forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
