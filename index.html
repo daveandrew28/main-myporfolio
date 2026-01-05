@@ -15,7 +15,7 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-circle">
-                    <img src="images/logo/rukia2.jpg" alt="Logo" id="logo-img" onclick="toggleTheme()">
+                    <img src="images/logo/rukia2.jpg" alt="Logo" id="logo-img">
                 </div>
             </div>
 
@@ -26,12 +26,12 @@
 
             <!-- Navigation Links -->
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">My Porfolio</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">My Portfolio</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
             <!-- Theme Toggle Button -->
@@ -49,12 +49,14 @@
                     <h1 class="fade-in">Hi, I'm <span class="highlight">Dave</span></h1>
                     <h2 class="fade-in-delay">
                         <div class="typing-container">
-                            <span id="typing-text" class="typing-text-gradient">UI/UX Developer</span>
-                            <span class="cursor"></span>
+                            <span class="static-text"></span>
+                            <div class="typing-animation-wrapper">
+                                <span class="typed-text"></span>
+                                <span class="cursor">|</span>
+                            </div>
                         </div>
                     </h2>
-                    <p class="fade-in-delay-2">Crafting beautiful, functional, and user-centered digital experiences.
-                        Passionate about creating intuitive interfaces that solve real problems and delight users.</p>
+                    <p class="fade-in-delay-2">Passionate about Making UI/UX related experiences.</p>
                     <div class="cta-buttons fade-in-delay-3">
                         <a href="#contact" class="btn btn-secondary">Hire me</a>
                     </div>
@@ -78,44 +80,187 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">My Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
+
+            <!-- Desktop: Infinite Scroll Animation -->
+            <div class="desktop-only">
+                <div class="skills-track">
+                    <!-- First set -->
+                    <div class="skills-grid">
+                        <div class="skill-card" data-skill="java">
+                            <div class="skill-icon">
+                                <img src="images/skills/java.png" alt="Java" class="skill-logo">
+                            </div>
+                            <h3>Java</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="mysql">
+                            <div class="skill-icon">
+                                <img src="images/skills/mysql.png" alt="MySQL" class="skill-logo">
+                            </div>
+                            <h3>MySQL</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="python">
+                            <div class="skill-icon">
+                                <img src="images/skills/python.png" alt="Python" class="skill-logo">
+                            </div>
+                            <h3>Python</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="html">
+                            <div class="skill-icon">
+                                <img src="images/skills/html.png" alt="HTML5" class="skill-logo">
+                            </div>
+                            <h3>HTML</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="css">
+                            <div class="skill-icon">
+                                <img src="images/skills/css.png" alt="CSS3" class="skill-logo">
+                            </div>
+                            <h3>CSS</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="javascript">
+                            <div class="skill-icon">
+                                <img src="images/skills/js.png" alt="JavaScript" class="skill-logo">
+                            </div>
+                            <h3>JavaScript</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="skills-grid">
+                        <div class="skill-card" data-skill="java">
+                            <div class="skill-icon">
+                                <img src="images/skills/java.png" alt="Java" class="skill-logo">
+                            </div>
+                            <h3>Java</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="mysql">
+                            <div class="skill-icon">
+                                <img src="images/skills/mysql.png" alt="MySQL" class="skill-logo">
+                            </div>
+                            <h3>MySQL</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="python">
+                            <div class="skill-icon">
+                                <img src="images/skills/python.png" alt="Python" class="skill-logo">
+                            </div>
+                            <h3>Python</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="html">
+                            <div class="skill-icon">
+                                <img src="images/skills/html.png" alt="HTML5" class="skill-logo">
+                            </div>
+                            <h3>HTML</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="css">
+                            <div class="skill-icon">
+                                <img src="images/skills/css.png" alt="CSS3" class="skill-logo">
+                            </div>
+                            <h3>CSS</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card" data-skill="javascript">
+                            <div class="skill-icon">
+                                <img src="images/skills/js.png" alt="JavaScript" class="skill-logo">
+                            </div>
+                            <h3>JavaScript</h3>
+                            <div class="skill-level">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile: Static Grid -->
+            <div class="mobile-only">
+                <div class="skill-card" data-skill="java">
                     <div class="skill-icon">
                         <img src="images/skills/java.png" alt="Java" class="skill-logo">
                     </div>
                     <h3>Java</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="mysql">
                     <div class="skill-icon">
                         <img src="images/skills/mysql.png" alt="MySQL" class="skill-logo">
                     </div>
                     <h3>MySQL</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="python">
                     <div class="skill-icon">
-                        <img src="images/skills/python.png" alt="Pytho" class="skill-logo">
+                        <img src="images/skills/python.png" alt="Python" class="skill-logo">
                     </div>
                     <h3>Python</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="html">
                     <div class="skill-icon">
                         <img src="images/skills/html.png" alt="HTML5" class="skill-logo">
                     </div>
                     <h3>HTML</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="css">
                     <div class="skill-icon">
                         <img src="images/skills/css.png" alt="CSS3" class="skill-logo">
                     </div>
                     <h3>CSS</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card" data-skill="javascript">
                     <div class="skill-icon">
                         <img src="images/skills/js.png" alt="JavaScript" class="skill-logo">
                     </div>
                     <h3>JavaScript</h3>
+                    <div class="skill-level">
+                        <div class="skill-progress"></div>
+                    </div>
                 </div>
             </div>
+
+            <p class="skills-note">Hover over any skill to cool animations!</p>
         </div>
     </section>
 
@@ -127,7 +272,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="images/projects/osa.jpg" alt="Office of Student Affairs Department Partnership System"
-                            class="project-img">
+                            class="project-img" data-image="osa">
                     </div>
                     <div class="project-info">
                         <h3>OSA Department Partnership System</h3>
@@ -144,7 +289,8 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/projects/myporfolio.jpg" alt="My Portfolio" class="project-img">
+                        <img src="images/projects/myporfolio.jpg" alt="My Portfolio" class="project-img"
+                            data-image="portfolio">
                     </div>
                     <div class="project-info">
                         <h3>My Portfolio</h3>
@@ -160,7 +306,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="images/projects/color mixer.PNG" alt="WinForms Color Mixer Application"
-                            class="project-img">
+                            class="project-img" data-image="color-mixer">
                     </div>
                     <div class="project-info">
                         <h3>WinForms Color Mixer</h3>
@@ -175,7 +321,8 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/projects/Weather.png" alt="Weather Information App" class="project-img">
+                        <img src="images/projects/Weather.png" alt="Weather Information App" class="project-img"
+                            data-image="weather">
                     </div>
                     <div class="project-info">
                         <h3>Weather Information App</h3>
@@ -191,7 +338,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <img src="images/project collab/fitness.jpg" alt="Online Fitness Booking Payment System"
-                            class="project-img">
+                            class="project-img" data-image="fitness">
                     </div>
                     <div class="project-info">
                         <h3>Online Fitness Booking System</h3>
@@ -219,7 +366,7 @@
                     <div class="certificate-image">
                         <img src="images/certificates/Complete.jpg"
                             alt="Certificate of Completion from World of Adventures Travel and Tours"
-                            class="certificate-img">
+                            class="certificate-img" data-image="cert-watt">
                     </div>
                     <div class="certificate-content">
                         <h3>Certificate of Completion (Watt)</h3>
@@ -230,7 +377,7 @@
                 <div class="certificate-card">
                     <div class="certificate-image">
                         <img src="images/certificates/Complete2.jpg" alt="Certificate of Completion from CodeChum"
-                            class="certificate-img">
+                            class="certificate-img" data-image="cert-mysql">
                     </div>
                     <div class="certificate-content">
                         <h3>Certificate of Completion (MySQL)</h3>
@@ -241,7 +388,7 @@
                 <div class="certificate-card">
                     <div class="certificate-image">
                         <img src="images/certificates/Complete3.jpg" alt="Certificate of Completion from Bitdegree"
-                            class="certificate-img">
+                            class="certificate-img" data-image="cert-javascript">
                     </div>
                     <div class="certificate-content">
                         <h3>Certificate of Completion (JavaScript)</h3>
@@ -262,7 +409,8 @@
                 <!-- Blog Post 1 -->
                 <div class="blog-card">
                     <div class="blog-image">
-                        <img src="images/blog/BlogProfile2.jpg" alt="Web Development Trends 2024" class="blog-img">
+                        <img src="images/blog/BlogProfile2.jpg" alt="Web Development Trends 2024" class="blog-img"
+                            data-image="blog-educational-tour">
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
@@ -276,41 +424,105 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
-            <div class="contact-content">
-                <p class="contact-intro">Have a project in mind or want to collaborate? Feel free to reach out!</p>
-                <div class="contact-links">
-                    <a href="mailto:dave.serafin@hcdc.edu.ph" class="contact-link">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+            <p class="contact-intro">Have a project in mind or want to collaborate? Feel free to reach out or send me a
+                message directly!</p>
+
+            <div class="contact-wrapper">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your name">
+                            <div class="error-message" id="nameError"></div>
                         </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>dave.serafin@hcdc.edu.ph</p>
+
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <div class="error-message" id="emailError"></div>
                         </div>
-                    </a>
-                    <a href="https://www.facebook.com/dave.andrew.serafin.2024" target="_blank" class="contact-link">
-                        <div class="contact-icon">
-                            <i class="fab fa-facebook-f"></i>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
                         </div>
-                        <div class="contact-details">
-                            <h4>Facebook</h4>
-                            <p>Dave Andrew Serafin</p>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" required
+                                placeholder="Tell me about your project or inquiry..."></textarea>
+                            <div class="error-message" id="messageError"></div>
                         </div>
-                    </a>
-                    <div class="contact-link">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                </span>
+                            </button>
+                            <div class="form-status" id="formStatus"></div>
                         </div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>+63 9055143652</p>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <h3>Get in Touch</h3>
+                    <p>You can also reach me through these channels:</p>
+
+                    <div class="contact-links">
+                        <a href="mailto:dave.serafin@hcdc.edu.ph" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>dave.serafin@hcdc.edu.ph</p>
+                            </div>
+                        </a>
+                        <a href="https://www.facebook.com/dave.andrew.serafin.2024" target="_blank"
+                            class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Facebook</h4>
+                                <p>Dave Andrew Serafin</p>
+                            </div>
+                        </a>
+                        <div class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+63 9055143652</p>
+                            </div>
                         </div>
+                        <div class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Philippines</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-hours">
+                        <h4>Response Time</h4>
+                        <p>I typically respond within 24-48 hours on weekdays.</p>
                     </div>
                 </div>
             </div>
@@ -332,7 +544,6 @@
             <img id="modalImage" src="" alt="Zoomed Image">
         </div>
     </div>
-
 
     <script src="script.js"></script>
 </body>
