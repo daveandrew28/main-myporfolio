@@ -24,10 +24,10 @@ const darkProfile = 'images/My profile/dave2.jpg';
 // ========== ADVANCED TYPING ANIMATION ==========
 function startTypingAnimation() {
     const words = [
-        { text: "I'm a Full Stack Developer", color: "#6366f1" },
-        { text: "I'm a Creative Thinker", color: "#8b5cf6" },
-        { text: "I'm a Problem Solver", color: "#10b981" },
-        { text: "I'm a UI/UX Developer", color: "#f59e0b" },
+        { text: "Full Stack Developer", color: "#6366f1" },
+        { text: "Creative Thinker", color: "#8b5cf6" },
+        { text: "Problem Solver", color: "#10b981" },
+        { text: "UI/UX Developer", color: "#f59e0b" },
         { text: "Future Game Developer", color: "#ef4444" }
     ];
     
